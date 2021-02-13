@@ -8,6 +8,10 @@ namespace sys4go.AcademiaFinanceiro.Repository
     public class AcademiaFinanceiroDbContext : DbContext
     {
         public DbSet<PlanosModel> Planos { get; set; }
+        public DbSet<AlunoModel> Aluno { get; set; }
+        public DbSet<ResponsavelAlunoModel> Responsavel { get; set; }
+        public DbSet<PagamentoModel> Pagamento { get; set; }
+
         public AcademiaFinanceiroDbContext(DbContextOptions<AcademiaFinanceiroDbContext> options) : base(options)
         {
         }
@@ -15,6 +19,9 @@ namespace sys4go.AcademiaFinanceiro.Repository
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(PlanosConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AlunoConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ResponsavelConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PagamentoConfiguration).Assembly);
 
             foreach (Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType entity in modelBuilder.Model.GetEntityTypes())
             {

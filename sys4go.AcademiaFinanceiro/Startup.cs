@@ -11,6 +11,8 @@ using Microsoft.OpenApi.Models;
 using sys4go.AcademiaFinanceiro.Repository;
 using sys4go.AcademiaFinanceiro.Repository.Configuration;
 using sys4go.AcademiaFinanceiro.Repository.Interface;
+using sys4go.AcademiaFinanceiro.Services;
+using sys4go.AcademiaFinanceiro.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +43,12 @@ namespace sys4go.AcademiaFinanceiro
             });
 
             services.AddScoped<DbContext, AcademiaFinanceiroDbContext>();
+
+            //Services
+            services.AddScoped<IDebitosAlunoService, DebitosAlunoService>();
+            //Repository
             services.AddScoped<IPlanosRepository, PlanoRepository>();
+            services.AddScoped<IDebitosAlunoRepository, DebitosAlunoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
